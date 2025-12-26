@@ -11,7 +11,12 @@
   "dependencies": {
     "react-dom": "^19.2.3",
     "lucide-react": "^0.562.0",
-    "react": "^19.2.3"
+    "react": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "vite": "^7.3.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "url": "^0.11.4"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

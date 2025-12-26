@@ -14,19 +14,40 @@ This repository contains the source code for the Vexel Studios official portfoli
 *   **Typography:** Chakra Petch (Headers), Rajdhani (Technical), Inter (Body)
 *   **Build System:** Node.js & Vite
 
-## Deployment
+## Deployment Instructions (Manual)
 
-This project is configured to automatically build and deploy to **GitHub Pages** whenever changes are pushed to the main branch.
+We use a local build process to ensure maximum control over the production artifacts. The site is served from the `/docs` folder on the `main` branch.
 
-*   **Live URL:** [vexelstudios.xyz](https://vexelstudios.xyz)
-*   **Hosting:** GitHub Pages
-*   **DNS:** Custom CNAME configuration
+### 1. Build Protocol
+Run the following command in your terminal to generate the production build. This will compile the application and output it to the `docs` directory.
+
+```bash
+npm run build
+```
+
+*Note: This process also auto-generates the `CNAME` file required for custom domain routing.*
+
+### 2. Version Control
+Open GitHub Desktop (or use CLI) and commit the changes. Ensure the `docs/` folder is included in your commit.
+
+```bash
+git add .
+git commit -m "Deploy: Update production build"
+git push origin main
+```
+
+### 3. DNS & Hosting Configuration
+*   **GitHub Repository Settings:**
+    *   Go to **Settings > Pages**.
+    *   **Source:** Deploy from a branch.
+    *   **Branch:** `main` | **Folder:** `/docs`.
+    *   **Custom Domain:** `vexelstudios.xyz`.
+    *   **Enforce HTTPS:** Enable this once the certificate provisions.
 
 ## Local Development
 
 1.  Install dependencies: `npm install`
 2.  Start development server: `npm run dev`
-3.  Build for production: `npm run build`
 
 ---
 © Vexel Studios. All Systems Operational.
