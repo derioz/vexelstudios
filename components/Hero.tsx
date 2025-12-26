@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowRight, ChevronRight, Zap } from 'lucide-react';
 
 interface HeroProps {
@@ -7,12 +7,12 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [scrollPos, setScrollPos] = useState(0);
+  const scrollRef = useRef(0);
 
-  // Handle Scroll Parallax
+  // Optimized Scroll Handler using Ref to prevent re-renders
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPos(window.scrollY);
+      scrollRef.current = window.scrollY;
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -71,6 +71,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
     let time = 0;
     const render = () => {
       time += 0.05;
+      const currentScroll = scrollRef.current;
       
       // Smooth mouse interpolation
       mouseX += (targetMouseX - mouseX) * 0.05;
@@ -102,7 +103,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
       // Horizontal Lines (Scanning effect)
       // They move down slowly + scroll parallax
-      const scrollOffset = scrollPos * 0.5; // Scroll parallax factor
+      const scrollOffset = currentScroll * 0.5; // Scroll parallax factor
       const moveOffset = (time * 10) % gridSize;
       
       for (let y = 0; y <= height + gridSize; y += gridSize) {
@@ -174,7 +175,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [scrollPos]);
+  }, []); // Empty dependency array ensures this only runs once on mount
 
   return (
     <div className="relative min-h-screen pt-20 flex flex-col justify-center overflow-hidden border-b border-vexel-border">

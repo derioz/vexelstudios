@@ -14,13 +14,19 @@ This repository contains the source code for the Vexel Studios official portfoli
 *   **Typography:** Chakra Petch (Headers), Rajdhani (Technical), Inter (Body)
 *   **Build System:** Node.js & Vite
 
-## Deployment
+## Deployment & DNS Troubleshooting
 
-This project is configured to automatically build and deploy to **GitHub Pages** whenever changes are pushed to the main branch.
+**If you see "Your connection isn't private" (NET::ERR_CERT_COMMON_NAME_INVALID):**
+This is normal for new domains. It means GitHub's SSL certificate is still provisioning.
 
-*   **Live URL:** [vexelstudios.xyz](https://vexelstudios.xyz)
-*   **Hosting:** GitHub Pages
-*   **DNS:** Custom CNAME configuration
+1.  **Wait 24 Hours:** It can take time for Let's Encrypt to issue the certificate.
+2.  **Verify GitHub Settings:**
+    *   Go to **Settings > Pages**.
+    *   **Build and deployment > Source**: Set to **GitHub Actions** (recommended) or "Deploy from branch" if you are manually building.
+    *   **Custom Domain**: Ensure `vexelstudios.xyz` is entered.
+    *   **Enforce HTTPS**: Check this box once the DNS check succeeds.
+3.  **Verify DNS Records:**
+    *   Ensure your domain provider has **A Records** pointing to GitHub's IPs (`185.199.108.153`, etc).
 
 ## Local Development
 
