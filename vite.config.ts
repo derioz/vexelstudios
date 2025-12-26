@@ -14,11 +14,11 @@ export default defineConfig({
     {
       name: 'generate-cname',
       closeBundle() {
-        const cnamePath = resolve(__dirname, 'dist', 'CNAME');
+        const cnamePath = resolve(__dirname, 'docs', 'CNAME');
         const cnameContent = 'vexelstudios.xyz';
         
-        // Ensure dist directory exists (it should after build)
-        if (fs.existsSync(resolve(__dirname, 'dist'))) {
+        // Ensure docs directory exists (it should after build)
+        if (fs.existsSync(resolve(__dirname, 'docs'))) {
             fs.writeFileSync(cnamePath, cnameContent);
             console.log(`✓ CNAME file auto-generated: ${cnameContent}`);
         }
@@ -26,7 +26,7 @@ export default defineConfig({
     }
   ],
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     emptyOutDir: true,
   }
 });
