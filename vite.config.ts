@@ -20,7 +20,7 @@ export default defineConfig({
         // Ensure docs directory exists (it should after build)
         if (fs.existsSync(resolve(__dirname, 'docs'))) {
             fs.writeFileSync(cnamePath, cnameContent);
-            console.log(`✓ CNAME file auto-generated: ${cnameContent}`);
+            console.log(`✓ CNAME file enforced: ${cnameContent}`);
         }
       }
     }
