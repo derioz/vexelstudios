@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vexel Studios | Premium Web Design & Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Chakra Petch', 'sans-serif'],
+              tech: ['Rajdhani', 'sans-serif'],
+            },
+            colors: {
+              vexel: {
+                950: '#030303',
+                900: '#080808',
+                800: '#111111',
+                700: '#1a1a1a',
+                border: '#222222',
+                accent: '#00f0ff', // Cyber cyan
+                lime: '#ccff00', // Acid lime
+                dim: '#666666'
+              }
+            },
+            backgroundImage: {
+              'grid-lines': "linear-gradient(to right, #1a1a1a 1px, transparent 1px)",
+            },
+            animation: {
+              'spin-slow': 'spin 12s linear infinite',
+              'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #030303;
+        color: #e5e5e5;
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Chakra Petch', sans-serif;
+      }
+      .font-tech {
+        font-family: 'Rajdhani', sans-serif;
+      }
+      /* Vertical Grid Lines Background */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 80rem; /* max-w-7xl */
+        height: 100vh;
+        background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px);
+        background-size: 25% 100%; /* 4 columns */
+        pointer-events: none;
+        z-index: -1;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #080808;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ccff00;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
