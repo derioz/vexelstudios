@@ -5,6 +5,7 @@ export interface Project {
   image: string;
   description: string;
   techStack: string[];
+  link?: string;
 }
 
 export interface Skill {
