@@ -4,36 +4,22 @@ import { ArrowUpRight, Folder } from 'lucide-react';
 
 const projects: Project[] = [
   {
-    id: 1,
-    title: "NEON_NEXUS",
-    category: "E-COMMERCE",
-    image: "https://picsum.photos/1200/800?random=10",
-    description: "Headless commerce architecture with WebGL product visualization.",
-    techStack: ["NEXT.JS", "SHOPIFY", "WEBGL"]
+    id: 6,
+    title: "BINX_PRODUCTIONS",
+    category: "PHOTOGRAPHY",
+    image: "https://r2.fivemanage.com/image/xNeWte0tVCny.png",
+    description: "In-game photography business for FiveM. A high-fidelity booking and gallery platform showcasing automotive and lifestyle visual storytelling.",
+    techStack: ["REACT", "TAILWIND", "FIVEM"],
+    link: "http://binx.productions"
   },
   {
     id: 2,
-    title: "APEX_LOGISTICS",
-    category: "DASHBOARD",
-    image: "https://picsum.photos/800/1000?random=20",
-    description: "Real-time fleet tracking and data visualization suite.",
-    techStack: ["REACT", "D3.JS", "NODE"]
-  },
-  {
-    id: 3,
-    title: "SYNTH_FM",
-    category: "AUDIO",
-    image: "https://picsum.photos/1200/800?random=30",
-    description: "Immersive audio streaming platform with frequency reactivity.",
-    techStack: ["VUE", "WEBAUDIO", "FIREBASE"]
-  },
-  {
-    id: 4,
-    title: "CYBER_VAULT",
-    category: "SECURITY",
-    image: "https://picsum.photos/800/1000?random=40",
-    description: "Zero-trust architecture marketing interface for SaaS.",
-    techStack: ["ASTRO", "TAILWIND", "MOTION"]
+    title: "VITAL_RP",
+    category: "GAMING",
+    image: "https://r2.fivemanage.com/image/6EDQyZDiJkQX.png",
+    description: "Designed the official gaming portal from scratch. Features a custom character dashboard, real-time server statistics, and immersive community forums.",
+    techStack: ["REACT", "TAILWIND", "NODE.JS"],
+    link: "http://vitalrp.net"
   }
 ];
 
@@ -60,28 +46,48 @@ export const Portfolio: React.FC = () => {
                  {/* Image Side */}
                  <div className="relative h-64 md:h-auto overflow-hidden border-b md:border-b-0 md:border-r border-vexel-border">
                     <div className="absolute inset-0 bg-vexel-900/20 group-hover:bg-transparent transition-colors z-10"></div>
+                    {/* Link overlay for image */}
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-20 cursor-pointer">
+                        <span className="sr-only">Visit {project.title}</span>
+                      </a>
+                    )}
                     <img 
                       src={project.image} 
                       alt={project.title} 
                       className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
                     />
-                    <div className="absolute top-4 left-4 z-20 bg-black border border-vexel-lime px-2 py-1">
-                       <span className="font-tech text-xs text-vexel-lime">IMG_0{index + 1}</span>
-                    </div>
                  </div>
 
                  {/* Content Side */}
-                 <div className="p-8 flex flex-col justify-between">
+                 <div className="p-6 md:p-8 flex flex-col justify-between">
                     <div>
                        <div className="flex justify-between items-start mb-4">
                           <span className="font-tech text-vexel-accent text-sm tracking-widest border border-vexel-accent/20 px-2 py-1 bg-vexel-accent/5">
                             {project.category}
                           </span>
-                          <ArrowUpRight className="w-6 h-6 text-vexel-dim group-hover:text-white transition-colors" />
+                          
+                          {project.link ? (
+                            <a 
+                              href={project.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="group/icon"
+                              title="Visit Live Site"
+                            >
+                               <ArrowUpRight className="w-6 h-6 text-vexel-dim group-hover/icon:text-vexel-lime transition-colors" />
+                            </a>
+                          ) : (
+                             <ArrowUpRight className="w-6 h-6 text-vexel-dim group-hover:text-white transition-colors" />
+                          )}
                        </div>
                        
-                       <h3 className="text-4xl font-display font-bold text-white mb-4 group-hover:text-vexel-lime transition-colors uppercase">
-                         {project.title}
+                       <h3 className="text-2xl md:text-4xl font-display font-bold text-white mb-4 group-hover:text-vexel-lime transition-colors uppercase break-words">
+                         {project.link ? (
+                           <a href={project.link} target="_blank" rel="noopener noreferrer">{project.title}</a>
+                         ) : (
+                           project.title
+                         )}
                        </h3>
                        
                        <p className="font-sans text-slate-400 leading-relaxed mb-8">
