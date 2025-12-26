@@ -1,75 +1,136 @@
 import React from 'react';
-import { Terminal, Database, Layout, Cpu } from 'lucide-react';
+import { Layout, Server, Clock, ArrowRight } from 'lucide-react';
+import { ViewState } from '../App';
 
-export const Skills: React.FC = () => {
+interface SkillsProps {
+  onNavigate: (view: ViewState) => void;
+}
+
+export const Skills: React.FC<SkillsProps> = ({ onNavigate }) => {
   return (
     <div className="bg-vexel-950 py-24 border-b border-vexel-border relative">
        
        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-vexel-border pb-8">
-             <div>
-                <span className="font-tech text-vexel-lime text-sm tracking-widest mb-2 block">OUR CAPABILITIES</span>
-                <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase">
-                   Design & <span className="text-vexel-dim">Development</span>
-                </h2>
-             </div>
-             <div className="mt-4 md:mt-0 font-tech text-right text-slate-500 text-sm">
-                <p>VISUAL IDENTITY</p>
-                <p>DIGITAL INFRASTRUCTURE</p>
-             </div>
+          {/* Header - Simplified */}
+          <div className="mb-16 border-b border-vexel-border pb-8">
+             <span className="font-tech text-vexel-lime text-sm tracking-widest mb-2 block">OUR SERVICES</span>
+             <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase">
+                What We <span className="text-vexel-dim">Offer</span>
+             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-vexel-border">
+          {/* Main Grid - Simplified Content */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
              
-             {/* Card 1 */}
-             <div className="bg-vexel-950 p-8 group hover:bg-vexel-900 transition-colors">
-                <Layout className="w-8 h-8 text-vexel-dim group-hover:text-vexel-accent mb-6 transition-colors" />
-                <h3 className="font-display text-xl font-bold text-white mb-4 uppercase">UI/UX & Web Design</h3>
-                <ul className="space-y-2 font-tech text-slate-400 text-sm tracking-wide">
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-accent"></div> Figma Prototyping</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-accent"></div> Visual Identity & Branding</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-accent"></div> Responsive Layouts</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-accent"></div> Design Systems</li>
-                </ul>
+             {/* Frontend */}
+             <div className="bg-vexel-900/20 border border-vexel-border p-8 hover:border-vexel-lime transition-all group flex flex-col justify-between">
+                <div>
+                  <Layout className="w-10 h-10 text-vexel-lime mb-6" />
+                  <h3 className="font-display text-2xl font-bold text-white mb-4 uppercase">Frontend & Static Pages</h3>
+                  <p className="font-sans text-slate-400 mb-6 leading-relaxed">
+                     We build the visual side of your site. Whether you need a lightning-fast static page to showcase your work or a complex interactive interface.
+                  </p>
+                  <ul className="space-y-2 font-tech text-sm text-slate-300 uppercase tracking-wide mb-8">
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-vexel-lime"></div>
+                        High-Performance Static Sites
+                     </li>
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-vexel-lime"></div>
+                        Mobile Responsive Design
+                     </li>
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-vexel-lime"></div>
+                        Smooth Animations
+                     </li>
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => onNavigate('pricing')}
+                  className="w-full py-3 border border-vexel-dim text-white font-tech tracking-widest uppercase hover:bg-vexel-lime hover:text-black hover:border-vexel-lime transition-all flex items-center justify-center gap-2"
+                >
+                  View Options <ArrowRight className="w-4 h-4" />
+                </button>
              </div>
 
-             {/* Card 2 */}
-             <div className="bg-vexel-950 p-8 group hover:bg-vexel-900 transition-colors">
-                <Terminal className="w-8 h-8 text-vexel-dim group-hover:text-vexel-lime mb-6 transition-colors" />
-                <h3 className="font-display text-xl font-bold text-white mb-4 uppercase">Full Stack Dev</h3>
-                <ul className="space-y-2 font-tech text-slate-400 text-sm tracking-wide">
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> React 19 / Next.js</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Node.js & Serverless</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Custom Animations (GSAP)</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Performance Optimization</li>
-                </ul>
+             {/* Backend */}
+             <div className="bg-vexel-900/20 border border-vexel-border p-8 hover:border-vexel-accent transition-all group flex flex-col justify-between">
+                <div>
+                  <Server className="w-10 h-10 text-vexel-accent mb-6" />
+                  <h3 className="font-display text-2xl font-bold text-white mb-4 uppercase">Backend Development</h3>
+                  <p className="font-sans text-slate-400 mb-6 leading-relaxed">
+                     The engine under the hood. We create secure custom systems to handle your data, users, and complex business logic.
+                  </p>
+                  <ul className="space-y-2 font-tech text-sm text-slate-300 uppercase tracking-wide mb-8">
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-vexel-accent"></div>
+                        Database Management
+                     </li>
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-vexel-accent"></div>
+                        Secure API Integration
+                     </li>
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-vexel-accent"></div>
+                        User Accounts & Auth
+                     </li>
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => onNavigate('pricing')}
+                  className="w-full py-3 border border-vexel-dim text-white font-tech tracking-widest uppercase hover:bg-vexel-accent hover:text-black hover:border-vexel-accent transition-all flex items-center justify-center gap-2"
+                >
+                  View Options <ArrowRight className="w-4 h-4" />
+                </button>
              </div>
 
-             {/* Card 3 */}
-             <div className="bg-vexel-950 p-8 group hover:bg-vexel-900 transition-colors">
-                <Database className="w-8 h-8 text-vexel-dim group-hover:text-white mb-6 transition-colors" />
-                <h3 className="font-display text-xl font-bold text-white mb-4 uppercase">Data & Intelligence</h3>
-                <ul className="space-y-2 font-tech text-slate-400 text-sm tracking-wide">
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-white"></div> Gemini AI Integration</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-white"></div> SQL & NoSQL Databases</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-white"></div> Custom API Development</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-white"></div> CMS Integration (Sanity)</li>
-                </ul>
-             </div>
-
-             {/* Card 4 */}
-             <div className="bg-vexel-950 p-8 group hover:bg-vexel-900 transition-colors">
-                <Cpu className="w-8 h-8 text-vexel-dim group-hover:text-purple-400 mb-6 transition-colors" />
-                <h3 className="font-display text-xl font-bold text-white mb-4 uppercase">E-Commerce & Ops</h3>
-                <ul className="space-y-2 font-tech text-slate-400 text-sm tracking-wide">
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-purple-400"></div> Shopify Headless</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-purple-400"></div> Stripe Integration</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-purple-400"></div> Hosting (AWS/Vercel)</li>
-                   <li className="flex items-center gap-2"><div className="w-1 h-1 bg-purple-400"></div> SEO & Analytics</li>
-                </ul>
+             {/* Retainer */}
+             <div className="bg-vexel-900/20 border border-vexel-border p-8 hover:border-purple-400 transition-all group flex flex-col justify-between">
+                <div>
+                  <Clock className="w-10 h-10 text-purple-400 mb-6" />
+                  <h3 className="font-display text-2xl font-bold text-white mb-4 uppercase">Retainer & Updates</h3>
+                  <p className="font-sans text-slate-400 mb-6 leading-relaxed">
+                     We don't just launch and leave. We offer monthly retainer packages to handle custom edits, new features, and design tweaks as you grow.
+                  </p>
+                  <ul className="space-y-2 font-tech text-sm text-slate-300 uppercase tracking-wide mb-8">
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-purple-400"></div>
+                        Priority Custom Edits
+                     </li>
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-purple-400"></div>
+                        Content Updates
+                     </li>
+                     <li className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-purple-400"></div>
+                        Continuous Improvement
+                     </li>
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => onNavigate('pricing')}
+                  className="w-full py-3 border border-vexel-dim text-white font-tech tracking-widest uppercase hover:bg-purple-400 hover:text-black hover:border-purple-400 transition-all flex items-center justify-center gap-2"
+                >
+                  View Options <ArrowRight className="w-4 h-4" />
+                </button>
              </div>
 
           </div>
+
+          {/* Minimal Tech Stack Strip */}
+          <div className="border-t border-vexel-border pt-10">
+             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                <span className="font-tech text-vexel-dim text-xs uppercase tracking-widest whitespace-nowrap">Core Technologies:</span>
+                <div className="flex flex-wrap gap-x-6 gap-y-2">
+                   {['React', 'Next.js', 'Node.js', 'TypeScript', 'Shopify', 'AWS', 'PostgreSQL'].map(tech => (
+                      <span key={tech} className="font-display font-bold text-slate-500 hover:text-white transition-colors uppercase text-sm">
+                         {tech}
+                      </span>
+                   ))}
+                </div>
+             </div>
+          </div>
+
        </div>
     </div>
   );

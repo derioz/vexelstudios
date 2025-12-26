@@ -14,16 +14,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, currentView, onCo
 
   // Reordered links to match page layout
   const navLinks = [
-    { name: 'HOME', href: '#home', id: 'home' },
-    { name: 'WORK', href: '#work', id: 'work' },
-    { name: 'SERVICES', href: '#skills', id: 'skills' },
-    { name: 'PROCESS', href: '#process', id: 'process' },
-    { name: 'FAQ', href: '#faq', id: 'faq' },
-    { name: 'ABOUT', href: '#about', id: 'about' },
+    { name: 'HOME', href: '#home', id: 'home', action: () => handleLinkClick('#home') },
+    { name: 'WORK', href: '#work', id: 'work', action: () => handleLinkClick('#work') },
+    { name: 'SKILLS', href: '#skills', id: 'skills', action: () => handleLinkClick('#skills') },
+    { name: 'PRICING', href: '#', id: 'pricing', action: () => onNavigate('pricing') },
+    { name: 'PROCESS', href: '#process', id: 'process', action: () => handleLinkClick('#process') },
+    { name: 'FAQ', href: '#faq', id: 'faq', action: () => handleLinkClick('#faq') },
+    { name: 'ABOUT', href: '#about', id: 'about', action: () => handleLinkClick('#about') },
   ];
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  const handleLinkClick = (href: string) => {
     if (currentView !== 'landing') {
       onNavigate('landing');
       setTimeout(() => {
@@ -34,6 +34,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, currentView, onCo
       const target = document.querySelector(href);
       if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, action: () => void) => {
+    e.preventDefault();
+    action();
     setIsOpen(false);
   };
 
@@ -61,19 +66,20 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, currentView, onCo
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center h-full">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleClick(e, link.href)}
+                  onClick={(e) => handleClick(e, link.action)}
                   className={`h-full flex items-center px-6 border-l border-vexel-border font-tech text-sm tracking-widest font-semibold transition-all hover:bg-white/5 relative group ${
-                    currentView === 'landing' && activeSection === link.id ? 'text-white bg-white/5' : 'text-vexel-dim hover:text-white'
+                    (currentView === 'landing' && activeSection === link.id) || (currentView === 'pricing' && link.id === 'pricing') 
+                    ? 'text-white bg-white/5' 
+                    : 'text-vexel-dim hover:text-white'
                   }`}
                 >
                   {link.name}
-                  {currentView === 'landing' && activeSection === link.id && (
+                  {((currentView === 'landing' && activeSection === link.id) || (currentView === 'pricing' && link.id === 'pricing')) && (
                     <div className="absolute bottom-0 left-0 w-full h-0.5 bg-vexel-lime"></div>
                   )}
-                </a>
+                </button>
               ))}
 
               {/* Client Guide Link */}
@@ -120,22 +126,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, currentView, onCo
         
         <div className="flex-1 flex flex-col p-6 gap-2">
           {navLinks.map((link, idx) => (
-             <a
+             <button
               key={link.name}
-              href={link.href}
-              onClick={(e) => handleClick(e, link.href)}
-              className="flex items-center justify-between p-4 border border-vexel-border hover:border-vexel-lime hover:bg-white/5 transition-all group"
+              onClick={(e) => handleClick(e, link.action)}
+              className="flex items-center justify-between p-4 border border-vexel-border hover:border-vexel-lime hover:bg-white/5 transition-all group w-full text-left"
             >
               <span className="font-display text-2xl font-bold text-white group-hover:text-vexel-lime">{link.name}</span>
               <Crosshair className="w-5 h-5 text-vexel-dim group-hover:text-vexel-lime group-hover:rotate-90 transition-all" />
-            </a>
+            </button>
           ))}
           <button 
             onClick={() => {
               onNavigate('client-guide');
               setIsOpen(false);
             }}
-            className="flex items-center justify-between p-4 border border-vexel-border hover:border-vexel-accent hover:bg-white/5 transition-all group mt-4"
+            className="flex items-center justify-between p-4 border border-vexel-border hover:border-vexel-accent hover:bg-white/5 transition-all group mt-4 w-full text-left"
           >
              <span className="font-display text-xl text-slate-400 group-hover:text-vexel-accent">CLIENT GUIDE</span>
           </button>
