@@ -1,20 +1,32 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Vexel Studios
 
-# Run and deploy your AI Studio app
+**Vexel Studios** is a premium web design and digital infrastructure agency. We specialize in high-performance, custom-coded web architectures for brands that demand precision and aesthetics.
 
-This contains everything you need to run your app locally.
+## Project Overview
 
-View your app in AI Studio: https://ai.studio/apps/drive/1HGnWAy_EsVtbBD-EtmfEQx-ZcOsU3lBT
+This repository contains the source code for the Vexel Studios official portfolio and operations platform. It features a technical, dark-mode aesthetic inspired by hardware interfaces and cyber-security dashboards.
 
-## Run Locally
+### Tech Stack
 
-**Prerequisites:**  Node.js
+*   **Core:** React 19 & TypeScript
+*   **Styling:** Tailwind CSS
+*   **Icons:** Lucide React
+*   **Typography:** Chakra Petch (Headers), Rajdhani (Technical), Inter (Body)
+*   **Build System:** Node.js & Vite
 
+## Deployment
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+This project is configured to automatically build and deploy to **GitHub Pages** whenever changes are pushed to the main branch.
+
+*   **Live URL:** [vexelstudios.xyz](https://vexelstudios.xyz)
+*   **Hosting:** GitHub Pages
+*   **DNS:** Custom CNAME configuration
+
+## Local Development
+
+1.  Install dependencies: `npm install`
+2.  Start development server: `npm run dev`
+3.  Build for production: `npm run build`
+
+---
+© Vexel Studios. All Systems Operational.
