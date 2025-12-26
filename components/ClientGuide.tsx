@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Cpu, ShieldCheck, Database, CreditCard, Layers } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, CreditCard, ShieldCheck, Layers, Rocket, Monitor, Search } from 'lucide-react';
 
 interface ClientGuideProps {
   onBack: () => void;
@@ -7,137 +7,160 @@ interface ClientGuideProps {
 
 export const ClientGuide: React.FC<ClientGuideProps> = ({ onBack }) => {
   return (
-    <div className="min-h-screen bg-vexel-950 pt-24 pb-12 px-6">
-      <div className="max-w-5xl mx-auto">
-        {/* Header / Navigation */}
-        <button 
-          onClick={onBack}
-          className="group flex items-center gap-2 text-vexel-dim hover:text-white mb-12 transition-colors font-tech text-sm tracking-widest uppercase"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to Home
+    <div className="min-h-screen bg-vexel-950 pt-12 pb-24 px-4 md:px-8 font-sans selection:bg-vexel-lime selection:text-black">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Navigation */}
+        <button
+             onClick={onBack}
+             className="group flex items-center gap-3 text-slate-400 hover:text-white transition-colors mb-16"
+           >
+             <ArrowLeft className="w-5 h-5 text-vexel-lime group-hover:-translate-x-1 transition-transform" />
+             <span className="font-display font-bold text-sm tracking-wide uppercase">Return to Main</span>
         </button>
 
-        <div className="border border-vexel-border bg-vexel-900/50 p-8 md:p-12 relative overflow-hidden">
-          
-          {/* Title Section */}
-          <div className="mb-16 border-b border-vexel-border pb-8 flex flex-col md:flex-row justify-between items-end">
-            <div>
-              <div className="inline-block px-2 py-1 mb-4 border border-vexel-lime bg-vexel-lime/10 text-vexel-lime font-tech text-xs tracking-widest uppercase">
-                Client Guide
-              </div>
-              <h1 className="text-4xl md:text-6xl font-display font-bold text-white uppercase leading-none">
-                Working <span className="text-vexel-dim">With Us</span>
-              </h1>
-            </div>
-            <div className="mt-4 md:mt-0 font-tech text-right text-xs text-vexel-dim">
-              <p>REF: VX_GUIDE_V1</p>
-              <p>ACCESS LEVEL: PUBLIC</p>
-            </div>
-          </div>
-
-          {/* 1. Overview */}
-          <section className="mb-16">
-            <h2 className="text-xl font-display font-bold text-white mb-6 flex items-center gap-2 uppercase">
-              <span className="text-vexel-lime">01 //</span> Overview
-            </h2>
-            <div className="p-6 border-l border-vexel-border">
-              <p className="font-sans text-slate-400 leading-relaxed max-w-3xl">
-                We operate on precision. This document serves as the operational manual for engagement with Vexel Studios. Adherence to this roadmap ensures optimal project velocity and deployment success.
-              </p>
-            </div>
-          </section>
-
-          {/* 2. Roadmap */}
-          <section className="mb-16">
-            <h2 className="text-xl font-display font-bold text-white mb-8 flex items-center gap-2 uppercase">
-              <span className="text-vexel-lime">02 //</span> Our Process
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {[
-                { step: "01", title: "DISCOVERY", desc: "Planning" },
-                { step: "02", title: "DESIGN", desc: "UI/UX Design" },
-                { step: "03", title: "BUILD", desc: "Development" },
-                { step: "04", title: "DEPLOY", desc: "Launch" }
-              ].map((phase, idx) => (
-                <div key={phase.step} className="p-6 border border-vexel-border bg-vexel-950 hover:border-vexel-accent transition-colors group">
-                  <span className="text-4xl font-display font-bold text-vexel-dim group-hover:text-white transition-colors mb-4 block">0{idx + 1}</span>
-                  <h3 className="font-bold text-white font-tech tracking-wider mb-1">{phase.title}</h3>
-                  <p className="text-xs text-slate-500 font-tech uppercase">{phase.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 3. Specs */}
-          <section className="mb-16">
-            <h2 className="text-xl font-display font-bold text-white mb-6 flex items-center gap-2 uppercase">
-              <span className="text-vexel-lime">03 //</span> Technical Specs
-            </h2>
-            <div className="grid md:grid-cols-3 gap-px bg-vexel-border border border-vexel-border">
-              <div className="p-8 bg-vexel-950">
-                <Layers className="w-6 h-6 text-white mb-4" />
-                <h3 className="font-tech font-bold text-white mb-2 uppercase">Custom Stack</h3>
-                <p className="text-xs text-slate-500 font-sans">Bespoke solutions. No drag-and-drop builders.</p>
-              </div>
-              <div className="p-8 bg-vexel-950">
-                <Cpu className="w-6 h-6 text-vexel-lime mb-4" />
-                <h3 className="font-tech font-bold text-white mb-2 uppercase">High Performance</h3>
-                <p className="text-xs text-slate-500 font-sans">Sub-second load times standard.</p>
-              </div>
-              <div className="p-8 bg-vexel-950">
-                <Database className="w-6 h-6 text-vexel-accent mb-4" />
-                <h3 className="font-tech font-bold text-white mb-2 uppercase">SEO Optimized</h3>
-                <p className="text-xs text-slate-500 font-sans">Structured data and semantic HTML.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* 4. Logistics */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <section>
-              <h2 className="text-xl font-display font-bold text-white mb-6 flex items-center gap-2 uppercase">
-                <span className="text-vexel-lime">04 //</span> Assurance
-              </h2>
-              <div className="bg-vexel-950 border border-vexel-border p-6 h-full flex flex-col justify-center">
-                 <div className="flex items-center gap-4 mb-2">
-                    <ShieldCheck className="w-5 h-5 text-green-500" />
-                    <span className="font-tech font-bold text-white uppercase">30-Day Debugging</span>
-                 </div>
-                 <p className="text-sm text-slate-500 pl-9">All critical errors resolved gratis post-launch.</p>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-display font-bold text-white mb-6 flex items-center gap-2 uppercase">
-                <span className="text-vexel-lime">05 //</span> Billing
-              </h2>
-              <div className="bg-vexel-950 border border-vexel-border p-6 h-full">
-                <div className="flex justify-between items-center mb-2 font-tech text-sm">
-                  <span className="text-slate-400 uppercase">Initialization</span>
-                  <span className="text-white">50%</span>
-                </div>
-                <div className="w-full h-1 bg-vexel-800 mb-4">
-                  <div className="w-1/2 h-full bg-vexel-lime"></div>
-                </div>
-                
-                 <div className="flex justify-between items-center mb-2 font-tech text-sm">
-                  <span className="text-slate-400 uppercase">Completion</span>
-                  <span className="text-white">50%</span>
-                </div>
-                 <div className="w-full h-1 bg-vexel-800 mb-6">
-                   <div className="w-full h-full bg-vexel-dim opacity-20"></div>
-                </div>
-
-                <div className="flex items-center gap-2 text-xs text-vexel-dim font-tech uppercase">
-                  <CreditCard className="w-4 h-4" />
-                  Stripe / Wise / Crypto
-                </div>
-              </div>
-            </section>
-          </div>
+        {/* Header */}
+        <div className="mb-20 animate-in slide-in-from-bottom-4 duration-700 fade-in">
+            <h1 className="text-5xl md:text-6xl font-display font-bold text-white mb-6">
+                The Partnership <br/>
+                <span className="text-vexel-lime">Blueprint</span>
+            </h1>
+            <p className="text-lg text-slate-400 max-w-2xl leading-relaxed border-l-2 border-vexel-lime/50 pl-6">
+                We believe in absolute transparency. Here is exactly how we take your project from concept to code, including how payments work and what you receive at the finish line.
+            </p>
         </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            {/* Main Content: Roadmap */}
+            <div className="lg:col-span-8">
+                <div className="flex items-center gap-3 mb-8">
+                    <Layers className="w-6 h-6 text-vexel-lime" />
+                    <h2 className="font-display font-bold text-2xl text-white uppercase tracking-wide">Project Roadmap</h2>
+                </div>
+
+                <div className="space-y-8 relative">
+                    {/* Vertical Line */}
+                    <div className="absolute left-8 top-8 bottom-8 w-px bg-vexel-border"></div>
+
+                    {/* Step 1 */}
+                    <div className="relative bg-vexel-900/30 border border-vexel-border p-8 rounded-sm hover:border-vexel-lime/50 transition-colors group">
+                        <div className="flex items-start gap-6">
+                            <div className="relative z-10 w-16 h-16 bg-vexel-950 border border-vexel-border flex items-center justify-center flex-shrink-0 group-hover:border-vexel-lime transition-colors">
+                                <Search className="w-6 h-6 text-slate-400 group-hover:text-vexel-lime transition-colors" />
+                            </div>
+                            <div>
+                                <span className="font-tech text-xs text-vexel-lime tracking-widest uppercase mb-1 block">Phase 01</span>
+                                <h3 className="font-display font-bold text-xl text-white mb-3">Discovery & Blueprint</h3>
+                                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                                    Before we design, we define. We analyze your competitors, map out your site's architecture, and lock in the technical requirements so there are no surprises later.
+                                </p>
+                                <ul className="text-xs font-tech text-vexel-dim uppercase tracking-wide space-y-1">
+                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Deliverable: Site Map & Strategy</li>
+                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Deliverable: Project Scope PDF</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="relative bg-vexel-900/30 border border-vexel-border p-8 rounded-sm hover:border-vexel-lime/50 transition-colors group">
+                        <div className="flex items-start gap-6">
+                            <div className="relative z-10 w-16 h-16 bg-vexel-950 border border-vexel-border flex items-center justify-center flex-shrink-0 group-hover:border-vexel-lime transition-colors">
+                                <Monitor className="w-6 h-6 text-slate-400 group-hover:text-vexel-lime transition-colors" />
+                            </div>
+                            <div>
+                                <span className="font-tech text-xs text-vexel-lime tracking-widest uppercase mb-1 block">Phase 02</span>
+                                <h3 className="font-display font-bold text-xl text-white mb-3">Design & Prototype</h3>
+                                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                                    We create a high-fidelity visual model of your website. You'll see exactly how it looks and feels—desktop and mobile—before we write a single line of code.
+                                </p>
+                                <ul className="text-xs font-tech text-vexel-dim uppercase tracking-wide space-y-1">
+                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Deliverable: Interactive Prototype</li>
+                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Deliverable: Visual Asset Library</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="relative bg-vexel-900/30 border border-vexel-border p-8 rounded-sm hover:border-vexel-lime/50 transition-colors group">
+                        <div className="flex items-start gap-6">
+                            <div className="relative z-10 w-16 h-16 bg-vexel-950 border border-vexel-border flex items-center justify-center flex-shrink-0 group-hover:border-vexel-lime transition-colors">
+                                <Rocket className="w-6 h-6 text-slate-400 group-hover:text-vexel-lime transition-colors" />
+                            </div>
+                            <div>
+                                <span className="font-tech text-xs text-vexel-lime tracking-widest uppercase mb-1 block">Phase 03</span>
+                                <h3 className="font-display font-bold text-xl text-white mb-3">Build & Launch</h3>
+                                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                                    We custom code your site using modern technology for maximum speed and security. Once tested, we handle the technical setup to put you online.
+                                </p>
+                                <ul className="text-xs font-tech text-vexel-dim uppercase tracking-wide space-y-1">
+                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Deliverable: Live High-Performance Website</li>
+                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-vexel-lime"></div> Deliverable: Admin Access & Training</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Column: Information Cards */}
+            <div className="lg:col-span-4 space-y-6">
+                
+                {/* Billing Card */}
+                <div className="bg-vexel-950 border border-vexel-border p-6 hover:border-white/30 transition-colors">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-vexel-border">
+                        <CreditCard className="w-5 h-5 text-white" />
+                        <h3 className="font-display font-bold text-white uppercase">Payments</h3>
+                    </div>
+                    
+                    <div className="flex justify-between items-center mb-2">
+                        <span className="font-tech text-sm text-slate-400 uppercase">Start</span>
+                        <span className="font-tech text-sm text-slate-400 uppercase">Finish</span>
+                    </div>
+                    <div className="h-4 w-full bg-vexel-900 border border-vexel-border flex mb-4 relative">
+                        {/* Grid lines on the bar */}
+                        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_1px,#000_1px)] bg-[size:4px_100%] opacity-20 z-10"></div>
+                        <div className="w-1/2 bg-vexel-lime/80 h-full border-r border-vexel-950"></div>
+                        <div className="w-1/2 bg-vexel-900 h-full"></div>
+                    </div>
+                    <div className="flex justify-between items-start text-xs text-slate-500 mb-6">
+                        <span className="w-1/2 pr-2">50% deposit to secure your slot and begin design.</span>
+                        <span className="w-1/2 pl-2 text-right">50% due only when the site is finished and approved.</span>
+                    </div>
+                    <div className="bg-vexel-900/50 p-3 text-xs text-slate-400 border-l-2 border-vexel-dim font-tech tracking-wide">
+                        Methods: Bank Transfer, Stripe, Crypto.
+                    </div>
+                </div>
+
+                {/* Tech Simple Card */}
+                <div className="bg-vexel-950 border border-vexel-border p-6 hover:border-white/30 transition-colors">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-vexel-border">
+                        <CheckCircle2 className="w-5 h-5 text-white" />
+                        <h3 className="font-display font-bold text-white uppercase">The Guarantee</h3>
+                    </div>
+                    <ul className="space-y-6">
+                        <li className="flex items-start gap-3">
+                            <ShieldCheck className="w-5 h-5 text-vexel-lime mt-0.5 flex-shrink-0" />
+                            <div>
+                                <strong className="block text-white text-sm font-bold mb-1 font-display uppercase tracking-wide">30-Day Support</strong>
+                                <p className="text-xs text-slate-400 leading-relaxed">If anything breaks or looks wrong in the first month, we fix it for free. No questions asked.</p>
+                            </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Monitor className="w-5 h-5 text-vexel-lime mt-0.5 flex-shrink-0" />
+                            <div>
+                                <strong className="block text-white text-sm font-bold mb-1 font-display uppercase tracking-wide">Full Ownership</strong>
+                                <p className="text-xs text-slate-400 leading-relaxed">You own the code, the domain, and the design. We don't lock you into monthly subscriptions.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
       </div>
     </div>
   );

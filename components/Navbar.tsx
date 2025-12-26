@@ -75,6 +75,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, currentView, onCo
                   )}
                 </a>
               ))}
+
+              {/* Client Guide Link */}
+              <button
+                onClick={() => onNavigate('client-guide')}
+                className={`h-full flex items-center px-6 border-l border-vexel-border font-tech text-sm tracking-widest font-semibold transition-all hover:bg-white/5 relative group ${
+                  currentView === 'client-guide' ? 'text-white bg-white/5' : 'text-vexel-dim hover:text-white'
+                }`}
+              >
+                CLIENT GUIDE
+                {currentView === 'client-guide' && (
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-vexel-lime"></div>
+                )}
+              </button>
               
               <div className="h-full border-l border-vexel-border pl-8 flex items-center">
                  <button 
