@@ -19,9 +19,8 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    const particleCount = 60;
+    const particleCount = 100; // Increased count for more density
 
-    // Helper to get current accent color from CSS variables
     const getAccentColor = () => {
       const style = getComputedStyle(document.documentElement);
       return style.getPropertyValue('--brand-accent-rgb').trim() || '212, 255, 0';
@@ -34,19 +33,25 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
       speedX: number;
       speedY: number;
       opacity: number;
+      pulse: number;
+      pulseSpeed: number;
 
       constructor() {
         this.x = Math.random() * canvas!.width;
         this.y = Math.random() * canvas!.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.4 + 0.1;
+        this.size = Math.random() * 4 + 2; // Slightly larger "pixels"
+        this.speedX = (Math.random() - 0.5) * 0.6;
+        this.speedY = (Math.random() - 0.5) * 0.6;
+        this.opacity = Math.random() * 0.5 + 0.3; // Higher base opacity
+        this.pulse = Math.random();
+        this.pulseSpeed = Math.random() * 0.02 + 0.01;
       }
 
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
+        this.pulse += this.pulseSpeed;
+        
         if (this.x > canvas!.width) this.x = 0;
         else if (this.x < 0) this.x = canvas!.width;
         if (this.y > canvas!.height) this.y = 0;
@@ -55,8 +60,15 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
       draw() {
         const rgb = getAccentColor();
-        ctx!.fillStyle = `rgba(${rgb}, ${this.opacity})`;
+        const currentOpacity = this.opacity * (0.5 + Math.sin(this.pulse) * 0.5);
+        
+        ctx!.save();
+        ctx!.shadowBlur = 15; // Added glow
+        ctx!.shadowColor = `rgb(${rgb})`;
+        ctx!.fillStyle = `rgba(${rgb}, ${currentOpacity})`;
+        // Draw as sharp square "pixels"
         ctx!.fillRect(this.x, this.y, this.size, this.size);
+        ctx!.restore();
       }
     }
 
@@ -72,14 +84,18 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const rgb = getAccentColor();
-      ctx.strokeStyle = `rgba(${rgb}, 0.04)`;
-      ctx.lineWidth = 0.5;
+      
+      // Draw connection lines with more vibrancy
+      ctx.lineWidth = 1;
       for (let i = 0; i < particles.length; i++) {
-        for (let j = i; j < particles.length; j++) {
+        for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 180) {
+          
+          if (distance < 150) {
+            const lineOpacity = (1 - distance / 150) * 0.15; // Increased line opacity
+            ctx.strokeStyle = `rgba(${rgb}, ${lineOpacity})`;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -87,6 +103,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           }
         }
       }
+
       particles.forEach(p => {
         p.update();
         p.draw();
@@ -112,7 +129,11 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
   return (
     <div className="relative min-h-screen pt-32 pb-20 px-6 md:px-12 flex flex-col justify-center overflow-hidden bg-brand-black">
-      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" style={{ opacity: 0.7 }} />
+      <canvas 
+        ref={canvasRef} 
+        className="absolute inset-0 pointer-events-none z-0" 
+        style={{ opacity: 1.0 }} // Increased overall canvas opacity
+      />
       <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none z-0" style={{ transform: `translateY(${scrollY * 0.15}px)` }} />
       
       <div className="max-w-7xl mx-auto w-full relative z-10">

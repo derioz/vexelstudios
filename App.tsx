@@ -12,6 +12,7 @@ import { ContactModal } from './components/ContactModal';
 import { ClientGuide } from './components/ClientGuide';
 import { Pricing } from './components/Pricing';
 import { ThemeSwitcher } from './components/ThemeSwitcher';
+import { ExperimentalScrollbar } from './components/ExperimentalScrollbar';
 
 export type ViewState = 'landing' | 'client-guide' | 'pricing';
 
@@ -26,7 +27,7 @@ const App: React.FC = () => {
     if (currentView !== 'landing') return;
 
     const handleScroll = () => {
-      const sections = ['home', 'work', 'services', 'process', 'about'];
+      const sections = ['home', 'work', 'services', 'process', 'faq', 'about'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -59,6 +60,7 @@ const App: React.FC = () => {
       />
       
       <ThemeSwitcher />
+      {currentView === 'landing' && <ExperimentalScrollbar />}
       
       <main>
         {currentView === 'landing' ? (
