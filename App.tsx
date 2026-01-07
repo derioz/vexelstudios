@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -9,8 +10,10 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { ClientGuide } from './components/ClientGuide';
+import { Pricing } from './components/Pricing';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
 
-export type ViewState = 'landing' | 'client-guide';
+export type ViewState = 'landing' | 'client-guide' | 'pricing';
 
 const App: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -19,13 +22,11 @@ const App: React.FC = () => {
 
   const toggleContact = () => setIsContactOpen(!isContactOpen);
 
-  // Simple scroll spy to update active section in navbar
   useEffect(() => {
     if (currentView !== 'landing') return;
 
     const handleScroll = () => {
-      // Updated order to match the layout
-      const sections = ['home', 'work', 'skills', 'process', 'faq', 'about'];
+      const sections = ['home', 'work', 'services', 'process', 'about'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -49,13 +50,15 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-vexel-900 text-slate-300 font-sans selection:bg-vexel-accent selection:text-black overflow-x-hidden">
+    <div className="min-h-screen bg-brand-black text-white font-sans overflow-x-hidden">
       <Navbar 
         activeSection={activeSection} 
         currentView={currentView}
         onContactClick={toggleContact} 
         onNavigate={handleNavigate}
       />
+      
+      <ThemeSwitcher />
       
       <main>
         {currentView === 'landing' ? (
@@ -64,16 +67,16 @@ const App: React.FC = () => {
               <Hero onContactClick={toggleContact} />
             </section>
             
-            <section id="work">
+            <section id="work" className="px-6 md:px-12">
               <Portfolio />
             </section>
             
-            <section id="skills">
-              <Skills />
+            <section id="services">
+              <Skills onNavigate={handleNavigate} />
             </section>
 
             <section id="process">
-              <Process />
+              <Process onNavigate={handleNavigate} />
             </section>
             
             <section id="faq">
@@ -84,12 +87,14 @@ const App: React.FC = () => {
               <About />
             </section>
           </>
-        ) : (
+        ) : currentView === 'client-guide' ? (
           <ClientGuide onBack={() => handleNavigate('landing')} />
+        ) : (
+          <Pricing onBack={() => handleNavigate('landing')} onContact={toggleContact} />
         )}
       </main>
 
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
 
       {isContactOpen && <ContactModal onClose={toggleContact} />}
     </div>

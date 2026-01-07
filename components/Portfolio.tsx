@@ -1,120 +1,76 @@
+
 import React from 'react';
 import { Project } from '../types';
-import { ArrowUpRight, Folder } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const projects: Project[] = [
   {
-    id: 6,
-    title: "BINX_PRODUCTIONS",
-    category: "PHOTOGRAPHY",
+    id: 1,
+    title: "BINX PRODUCTIONS",
+    category: "Photography & Creative",
     image: "https://r2.fivemanage.com/image/xNeWte0tVCny.png",
-    description: "In-game photography business for FiveM. A high-fidelity booking and gallery platform showcasing automotive and lifestyle visual storytelling.",
-    techStack: ["REACT", "TAILWIND", "FIVEM"],
+    description: "Visual storytelling platform for digital automotive photography.",
+    techStack: ["React", "Motion"],
     link: "http://binx.productions"
   },
   {
     id: 2,
-    title: "VITAL_RP",
-    category: "GAMING",
+    title: "VITAL RP",
+    category: "Gaming Infrastructure",
     image: "https://r2.fivemanage.com/image/6EDQyZDiJkQX.png",
-    description: "Designed the official gaming portal from scratch. Features a custom character dashboard, real-time server statistics, and immersive community forums.",
-    techStack: ["REACT", "TAILWIND", "NODE.JS"],
+    description: "Immersive community dashboard and server portal.",
+    techStack: ["Node", "Full-Stack"],
     link: "http://vitalrp.net"
   }
 ];
 
 export const Portfolio: React.FC = () => {
   return (
-    <div className="bg-vexel-950 py-24 relative border-b border-vexel-border">
-      <div className="max-w-7xl mx-auto px-6">
+    <div className="py-24 bg-brand-black relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
         
-        <div className="flex items-center gap-4 mb-16">
-          <Folder className="w-6 h-6 text-vexel-lime" />
-          <h2 className="text-3xl font-display font-bold text-white tracking-wide">
-            SELECTED WORK
-          </h2>
+        <div className="flex items-center justify-between mb-24">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-white">Portfolio</h2>
+          <span className="w-14 h-14 flex items-center justify-center bg-brand-accent rounded-full font-black text-black text-xl">02</span>
         </div>
 
-        <div className="grid grid-cols-1 gap-8">
-          {projects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className="group relative border border-vexel-border bg-vexel-900/50 hover:border-vexel-lime transition-all duration-300"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                 
-                 {/* Image Side */}
-                 <div className="relative h-64 md:h-auto overflow-hidden border-b md:border-b-0 md:border-r border-vexel-border">
-                    <div className="absolute inset-0 bg-vexel-900/20 group-hover:bg-transparent transition-colors z-10"></div>
-                    {/* Link overlay for image */}
-                    {project.link && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-20 cursor-pointer">
-                        <span className="sr-only">Visit {project.title}</span>
-                      </a>
-                    )}
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
-                    />
-                 </div>
-
-                 {/* Content Side */}
-                 <div className="p-6 md:p-8 flex flex-col justify-between">
-                    <div>
-                       <div className="flex justify-between items-start mb-4">
-                          <span className="font-tech text-vexel-accent text-sm tracking-widest border border-vexel-accent/20 px-2 py-1 bg-vexel-accent/5">
-                            {project.category}
-                          </span>
-                          
-                          {project.link ? (
-                            <a 
-                              href={project.link} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="group/icon"
-                              title="Visit Live Site"
-                            >
-                               <ArrowUpRight className="w-6 h-6 text-vexel-dim group-hover/icon:text-vexel-lime transition-colors" />
-                            </a>
-                          ) : (
-                             <ArrowUpRight className="w-6 h-6 text-vexel-dim group-hover:text-white transition-colors" />
-                          )}
-                       </div>
-                       
-                       <h3 className="text-2xl md:text-4xl font-display font-bold text-white mb-4 group-hover:text-vexel-lime transition-colors uppercase break-words">
-                         {project.link ? (
-                           <a href={project.link} target="_blank" rel="noopener noreferrer">{project.title}</a>
-                         ) : (
-                           project.title
-                         )}
-                       </h3>
-                       
-                       <p className="font-sans text-slate-400 leading-relaxed mb-8">
-                         {project.description}
-                       </p>
-                    </div>
-
-                    <div className="border-t border-vexel-border pt-4">
-                       <span className="block font-tech text-xs text-vexel-dim mb-2 uppercase">Tech Stack</span>
-                       <div className="flex flex-wrap gap-2">
-                          {project.techStack.map(tech => (
-                            <span key={tech} className="font-tech font-bold text-sm text-white">
-                              [{tech}]
-                            </span>
-                          ))}
-                       </div>
-                    </div>
-                 </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          {projects.map((project) => (
+            <div key={project.id} className="group cursor-pointer">
+              <div className="relative aspect-[4/3] bg-brand-card rounded-[3rem] overflow-hidden mb-8 border border-white/5 p-1">
+                <div className="w-full h-full overflow-hidden rounded-[2.8rem]">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-brand-accent/0 group-hover:bg-brand-accent/10 transition-colors duration-500" />
+                <div className="absolute inset-0 border-[8px] border-brand-black rounded-[3rem] pointer-events-none" />
+              </div>
+              
+              <div className="flex justify-between items-start px-4">
+                <div>
+                  <h3 className="text-3xl font-black mb-3 group-hover:text-brand-accent transition-colors text-white uppercase">{project.title}</h3>
+                  <div className="flex gap-4">
+                    <p className="text-brand-accent font-bold uppercase tracking-widest text-[10px] bg-brand-accent/10 px-3 py-1 rounded-full">
+                      {project.category}
+                    </p>
+                  </div>
+                </div>
+                <div className="w-16 h-16 flex items-center justify-center bg-brand-card border border-white/10 rounded-full group-hover:bg-brand-accent group-hover:text-black group-hover:rotate-45 transition-all duration-500">
+                  <ArrowUpRight className="w-7 h-7" />
+                </div>
               </div>
             </div>
           ))}
         </div>
-        
-        <div className="mt-16 flex justify-center">
-           <button className="font-tech text-lg text-vexel-dim hover:text-white tracking-widest border-b border-transparent hover:border-vexel-lime transition-all pb-1 uppercase">
-             View All Projects
-           </button>
+
+        <div className="mt-40 text-center">
+          <button className="text-2xl font-black border-b-4 border-brand-accent pb-2 text-white hover:text-brand-accent transition-all group inline-flex items-center gap-4">
+            View all projects
+            <span className="w-2 h-2 bg-brand-accent rounded-full group-hover:animate-ping"></span>
+          </button>
         </div>
 
       </div>

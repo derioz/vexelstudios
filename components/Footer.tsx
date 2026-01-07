@@ -1,55 +1,70 @@
-import React from 'react';
-import { Hexagon } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import { ViewState } from '../App';
+
+interface FooterProps {
+  onNavigate?: (view: ViewState) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
-    <footer className="bg-vexel-950 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-12">
+    <footer className="bg-brand-black pt-32 pb-12 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1 bg-brand-accent shadow-[0_0_50px_#D4FF00]" />
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-20 mb-32">
            <div className="max-w-md">
-              <div className="flex items-center gap-2 mb-6">
-                <Hexagon className="w-8 h-8 text-white fill-white/10" />
-                <span className="font-display font-bold text-2xl text-white">VEXEL</span>
+              <div className="text-4xl font-black tracking-tighter mb-10 text-white">
+                vexelstudios<span className="text-brand-accent">.</span>
               </div>
-              <h2 className="font-display text-4xl font-bold text-white mb-6 uppercase leading-tight">
-                Ready to <span className="text-vexel-lime">Upgrade?</span>
+              <h2 className="text-5xl md:text-7xl font-black uppercase leading-[0.9] tracking-tighter mb-16 text-white">
+                Ready to make <br/>it <span className="text-brand-accent">happen?</span>
               </h2>
               <a 
                 href="mailto:hello@vexelstudios.com" 
-                className="inline-block border border-vexel-lime text-vexel-lime px-6 py-3 font-tech font-bold tracking-widest hover:bg-vexel-lime hover:text-black transition-colors"
+                className="inline-flex items-center gap-4 text-3xl font-black border-b-4 border-brand-accent pb-2 text-white hover:text-brand-accent transition-all group"
               >
-                GET IN TOUCH
+                HELLO@VEXELSTUDIOS.COM <ArrowUpRight className="w-10 h-10 group-hover:rotate-45 transition-transform" />
               </a>
            </div>
 
-           <div className="grid grid-cols-2 gap-12">
+           <div className="grid grid-cols-2 md:grid-cols-3 gap-16 md:gap-24">
               <div>
-                 <h3 className="font-tech text-xs text-vexel-dim mb-4 tracking-widest uppercase">Menu</h3>
-                 <ul className="space-y-2 font-tech text-sm">
-                    <li><a href="#work" className="text-slate-400 hover:text-white transition-colors">[WORK]</a></li>
-                    <li><a href="#skills" className="text-slate-400 hover:text-white transition-colors">[SERVICES]</a></li>
-                    <li><a href="#protocols" className="text-slate-400 hover:text-white transition-colors">[FAQ]</a></li>
+                 <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-dim mb-8">Links</h3>
+                 <ul className="space-y-6 font-black uppercase text-xs tracking-widest text-white">
+                    <li><a href="#work" className="hover:text-brand-accent transition-colors">Our Work</a></li>
+                    <li><a href="#services" className="hover:text-brand-accent transition-colors">What we do</a></li>
+                    <li><a href="#process" className="hover:text-brand-accent transition-colors">How we work</a></li>
                  </ul>
               </div>
               <div>
-                 <h3 className="font-tech text-xs text-vexel-dim mb-4 tracking-widest uppercase">Socials</h3>
-                 <ul className="space-y-2 font-tech text-sm">
-                    <li><a href="#" className="text-slate-400 hover:text-white transition-colors">TWITTER / X</a></li>
-                    <li><a href="#" className="text-slate-400 hover:text-white transition-colors">LINKEDIN</a></li>
-                    <li><a href="#" className="text-slate-400 hover:text-white transition-colors">GITHUB</a></li>
+                 <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-dim mb-8">Help</h3>
+                 <ul className="space-y-6 font-black uppercase text-xs tracking-widest text-white">
+                    {onNavigate && (
+                      <li><button onClick={() => onNavigate('pricing')} className="hover:text-brand-accent transition-colors">Pricing</button></li>
+                    )}
+                    {onNavigate && (
+                      <li><button onClick={() => onNavigate('client-guide')} className="hover:text-brand-accent transition-colors">Guide</button></li>
+                    )}
+                 </ul>
+              </div>
+              <div className="hidden md:block">
+                 <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-dim mb-8">Social</h3>
+                 <ul className="space-y-6 font-black uppercase text-xs tracking-widest text-white">
+                    <li><a href="#" className="hover:text-brand-accent transition-colors">Twitter</a></li>
+                    <li><a href="#" className="hover:text-brand-accent transition-colors">Behance</a></li>
                  </ul>
               </div>
            </div>
         </div>
         
-        <div className="border-t border-vexel-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-tech text-xs text-vexel-dim">
-            VEXEL STUDIOS © {new Date().getFullYear()} | SYSTEM_ID: VX_2024
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-[10px] font-black text-brand-dim uppercase tracking-[0.4em]">
+            © {new Date().getFullYear()} Vexel Studios
           </p>
-          <div className="flex gap-6 font-tech text-xs text-vexel-dim">
-            <a href="#" className="hover:text-white">PRIVACY POLICY</a>
-            <a href="#" className="hover:text-white">TERMS OF SERVICE</a>
+          <div className="flex gap-12 text-[10px] font-black text-brand-dim uppercase tracking-[0.4em]">
+            <a href="#" className="hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms</a>
           </div>
         </div>
       </div>

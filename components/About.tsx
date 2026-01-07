@@ -1,77 +1,79 @@
+
 import React from 'react';
-import { User, Cpu, Gamepad2, Code } from 'lucide-react';
+import { User, Heart, Coffee, Pencil, CheckCircle, Zap } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
-    <div className="bg-vexel-950 py-24 border-b border-vexel-border relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div className="bg-brand-surface py-32 px-6 md:px-12 relative overflow-hidden border-t border-white/5">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
-            {/* Text Content */}
-            <div className="order-2 lg:order-1">
-               <div className="flex items-center gap-2 mb-6">
-                 <div className="h-px w-8 bg-vexel-lime"></div>
-                 <span className="font-tech text-vexel-lime tracking-widest text-sm uppercase">The Creator</span>
+            <div className="lg:col-span-7">
+               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 mb-8">
+                  <span className="text-[10px] font-black text-brand-accent uppercase tracking-[0.3em]">Nice to meet you</span>
                </div>
                
-               <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-8 leading-tight">
-                 Meet <span className="text-vexel-dim">Space</span>
+               <h2 className="text-6xl md:text-8xl font-black text-white mb-12 uppercase tracking-tighter leading-[0.85]">
+                 Who's <br/><span className="text-brand-accent">Behind it?</span>
                </h2>
                
-               <div className="space-y-6 font-sans text-slate-400 text-lg leading-relaxed mb-12">
+               <div className="space-y-8 text-xl text-brand-dim font-medium leading-relaxed mb-16 max-w-2xl">
                  <p>
-                   I'm the founder and lead developer behind Vexel Studios. Known online as <span className="text-white font-bold">Space</span>, I bridge the gap between high-performance hardware and creative digital design.
+                   My name is <span className="text-white font-black underline decoration-brand-accent decoration-4 underline-offset-8">David</span>, though most people online know me as <span className="text-brand-accent font-black uppercase">Space</span>.
                  </p>
                  <p>
-                   My background isn't just in code—it's in the culture of technology. From building custom PC rigs to competitive gaming, I understand that performance is an art form. I bring that same obsession with speed, optimization, and aesthetics to every website I build.
+                   I started Vexel Studios because I believe websites should be both beautiful and easy to use. I handle everything from the first design sketch to the final launch, making sure your project feels perfect.
                  </p>
                </div>
 
-                {/* Interest Grid */}
-               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  <div className="p-6 border border-vexel-border bg-vexel-900 hover:border-vexel-lime transition-colors group">
-                    <Cpu className="w-8 h-8 text-vexel-dim group-hover:text-vexel-lime mb-4 transition-colors" />
-                    <h4 className="font-display font-bold text-white uppercase text-sm tracking-wide mb-1">Hardware</h4>
-                    <span className="text-xs font-tech text-slate-500 uppercase tracking-wider">Enthusiast</span>
-                  </div>
-                  
-                  <div className="p-6 border border-vexel-border bg-vexel-900 hover:border-vexel-accent transition-colors group">
-                    <Gamepad2 className="w-8 h-8 text-vexel-dim group-hover:text-vexel-accent mb-4 transition-colors" />
-                    <h4 className="font-display font-bold text-white uppercase text-sm tracking-wide mb-1">Gaming</h4>
-                    <span className="text-xs font-tech text-slate-500 uppercase tracking-wider">Veteran</span>
-                  </div>
-                  
-                  <div className="p-6 border border-vexel-border bg-vexel-900 hover:border-white transition-colors group">
-                    <Code className="w-8 h-8 text-vexel-dim group-hover:text-white mb-4 transition-colors" />
-                    <h4 className="font-display font-bold text-white uppercase text-sm tracking-wide mb-1">Design</h4>
-                    <span className="text-xs font-tech text-slate-500 uppercase tracking-wider">Architect</span>
-                  </div>
+               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {[
+                    { label: 'Creative', icon: Pencil, detail: 'Beautiful Designs' },
+                    { label: 'Built Well', icon: Coffee, detail: 'Solid Code' },
+                    { label: 'Reliable', icon: Heart, detail: 'Always here' },
+                  ].map((item) => (
+                    <div key={item.label} className="p-8 bg-brand-black border border-white/5 rounded-3xl flex flex-col items-start group hover:border-brand-accent transition-all duration-500">
+                      <div className="w-10 h-10 flex items-center justify-center bg-brand-surface rounded-xl mb-6 text-brand-accent group-hover:scale-110 transition-transform">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-1">{item.label}</span>
+                      <span className="text-[9px] font-bold text-brand-dim uppercase tracking-widest">{item.detail}</span>
+                    </div>
+                  ))}
                </div>
             </div>
 
-            {/* Visual Side */}
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-                <div className="relative w-full max-w-md aspect-square bg-vexel-900 border border-vexel-border flex items-center justify-center overflow-hidden group hover:border-vexel-lime transition-colors duration-500">
-                    {/* Background Pattern */}
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.02)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]"></div>
-                    
-                    {/* Avatar */}
-                    <div className="relative z-10 w-48 h-48 rounded-full border-2 border-vexel-border flex items-center justify-center bg-vexel-950 group-hover:border-vexel-lime transition-colors duration-500 shadow-2xl">
-                        <User className="w-20 h-20 text-vexel-dim group-hover:text-white transition-colors" />
-                    </div>
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                <div className="relative w-full max-w-sm">
+                    <div className="bg-brand-card rounded-[3rem] border border-white/10 overflow-hidden relative group">
+                        <div className="aspect-[4/5] bg-brand-black relative flex items-center justify-center overflow-hidden">
+                            <User className="w-48 h-48 text-white/5 transform group-hover:scale-110 transition-transform duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent z-10" />
+                            
+                            <div className="absolute bottom-10 left-10 right-10 z-20">
+                                <div className="text-5xl font-black text-white uppercase tracking-tighter leading-none mb-1">
+                                    David
+                                </div>
+                                <div className="text-[10px] font-black text-brand-dim uppercase tracking-[0.3em]">
+                                  Founder & Designer
+                                </div>
+                            </div>
+                        </div>
 
-                    {/* Decorative Elements */}
-                    <div className="absolute bottom-6 right-6 text-right">
-                        <div className="font-display font-bold text-2xl text-white tracking-widest uppercase leading-none mb-1">VEXEL</div>
-                        <div className="font-tech text-xs text-vexel-lime tracking-widest uppercase">Studios HQ</div>
-                    </div>
-                     <div className="absolute top-6 left-6 font-tech text-xs text-vexel-dim tracking-widest uppercase border border-vexel-dim/30 px-2 py-1">
-                        Owner /// Space
+                        <div className="p-8 border-t border-white/5 flex justify-between bg-brand-surface/50">
+                             <div className="text-center">
+                                <div className="text-xs font-black text-white mb-1 uppercase tracking-widest">Space</div>
+                                <div className="text-[8px] font-bold text-brand-dim uppercase tracking-[0.2em]">Nickname</div>
+                             </div>
+                             <div className="w-[1px] h-8 bg-white/5" />
+                             <div className="text-center">
+                                <CheckCircle className="w-4 h-4 text-brand-accent mx-auto" />
+                                <div className="text-[8px] font-bold text-brand-dim uppercase tracking-[0.2em] mt-1">Available</div>
+                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
       </div>
     </div>
