@@ -1,3 +1,11 @@
-# Workflow disabled.
-# Deployment is now handled manually via local build and push of the 'docs' folder.
-# To re-enable automated builds, restore the previous workflow configuration.
+name: Manual Deployment Notice
+
+on:
+  workflow_dispatch:
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment Notice
+        run: echo "Deployment is currently handled manually by building locally and pushing the /docs folder."
