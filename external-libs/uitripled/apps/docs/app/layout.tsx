@@ -1,0 +1,122 @@
+import { ColorSchemeSync } from "@/components/color-scheme-sync";
+import { ConditionalFooter } from "@/components/conditional-footer";
+import { Header } from "@/components/header";
+import { StarUsSideReminder } from "@/components/star-us-side-reminder";
+import { ThemeProvider } from "@/components/theme-provider";
+import { UILibraryProvider } from "@/components/ui-library-provider";
+import { baseMetadata, siteConfig } from "@/lib/seo";
+import type { Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { OpenPanelComponent } from '@openpanel/nextjs';
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata = baseMetadata;
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+  ],
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    alternateName: siteConfig.shortName,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    keywords: siteConfig.keywords.join(", "),
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      alternateName: siteConfig.shortName,
+    },
+    sameAs: [
+      "https://x.com/moumensoliman",
+      "https://www.linkedin.com/in/moumensoliman/",
+    ],
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${siteConfig.url}/components?query={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          href="/rss.xml"
+          rel="alternate"
+          title="UITripleD Components and Blocks"
+          type="application/rss+xml"
+        />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <OpenPanelComponent
+          clientId={process.env.NEXT_PUBLIC_OPEN_PANEL_CLIENT_ID as string}
+          trackScreenViews={true}
+          trackAttributes={true}
+          trackOutgoingLinks={true}
+        />
+        {googleAnalyticsId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${googleAnalyticsId}');
+              `}
+            </Script>
+          </>
+        )}
+        <ThemeProvider>
+          <ColorSchemeSync />
+          <UILibraryProvider>
+            <NuqsAdapter>
+              <Header />
+              <main className="min-h-screen">{children}</main>
+              <ConditionalFooter />
+              <StarUsSideReminder />
+            </NuqsAdapter>
+          </UILibraryProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,29 @@
+{
+  "name": "uitripled-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "vercel-build": "turbo run build --filter=uitripled-docs",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "registry:generate": "pnpm dlx tsx packages/scripts/src/sync-registry.ts && pnpm dlx tsx packages/scripts/src/generate-registry-files.ts",
+    "registry:sync": "node apps/docs/scripts/sync-registry.js",
+    "registry:validate": "pnpm dlx tsx packages/scripts/src/validate-registry.ts",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=@uitripled/* && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.3.0"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": "^18.18.0 || ^20.0.0 || ^22.0.0"
+  },
+  "dependencies": {
+    "@openpanel/nextjs": "^1.1.3"
+  }
+}

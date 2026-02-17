@@ -1,0 +1,23 @@
+{
+  "name": "UI-TripleD - Animated React Components",
+  "short_name": "UI-TripleD",
+  "description": "A curated set of animated React components built with shadcn/ui and Framer Motion",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logos/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
