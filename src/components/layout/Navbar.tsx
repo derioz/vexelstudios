@@ -9,6 +9,7 @@ const navItems = [
     { name: "Work", id: "work" },
     { name: "Services", id: "services" },
     { name: "Process", id: "process" },
+    { name: "FAQ", id: "faq" },
     { name: "About", id: "about" },
     { name: "Contact", id: "contact" }
 ];
@@ -25,8 +26,31 @@ export function AnimatedNavbar({ onNavigate, className }: AnimatedNavbarProps) {
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
+
+            // Scroll Spy Logic
+            const sections = navItems.map(item => item.id).filter(id => id !== 'contact');
+            const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+            for (const sectionId of sections) {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        setActiveId(sectionId);
+                    }
+                }
+            }
+
+            // Handle bottom of page for About/Contact visibility
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                // optionally set contact or about active if near bottom
+            }
         };
+
         window.addEventListener("scroll", handleScroll);
+        // Initial check
+        handleScroll();
+
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -39,7 +63,6 @@ export function AnimatedNavbar({ onNavigate, className }: AnimatedNavbarProps) {
             if (element) {
                 element.scrollIntoView({ behavior: "smooth" });
             } else if (id === 'contact') {
-                // Handle contact modal if needed, or scroll to contact section
                 const contactSection = document.getElementById('contact') || document.getElementById('footer');
                 contactSection?.scrollIntoView({ behavior: 'smooth' });
             }
