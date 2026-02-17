@@ -4,14 +4,22 @@
 
 ## Project Overview
 
-This repository contains the source code for the Vexel Studios official portfolio and operations platform. It features a technical, dark-mode aesthetic inspired by hardware interfaces and cyber-security dashboards.
+This repository contains the source code for the Vexel Studios official portfolio and operations platform. The site has been completely revamped to feature a modern, motion-rich design system using advanced UI libraries.
+
+### Key Features
+*   **Dynamic Hero:** Canvas-based wave animations and interactive typography.
+*   **Bento Grid Portfolio:** A sophisticated grid layout showcasing featured projects.
+*   **Service Matrix:** Interactive cards detailing our core offerings (Design, Build, Maintain).
+*   **Timeline Process:** A visual journey through our 4-step client engagement model.
+*   **Transparent Pricing:** Clear, tiered pricing plans with "Popular" highlights.
+*   **New Client Guide:** A staggered-motion guide explaining our workflow and guarantees.
 
 ### Tech Stack
 
 *   **Core:** React 19 & TypeScript
-*   **Styling:** Tailwind CSS
+*   **Styling:** Tailwind CSS, `framer-motion`, `tailwindcss-animate`
+*   **UI Libraries:** `uitripled`, `elevenlabs/ui`, `shadcn/ui`
 *   **Icons:** Lucide React
-*   **Typography:** Chakra Petch (Headers), Rajdhani (Technical), Inter (Body)
 *   **Build System:** Node.js & Vite
 
 ## Deployment Instructions (Manual)
@@ -28,7 +36,7 @@ npm run build
 *Note: This process also auto-generates the `CNAME` file required for custom domain routing.*
 
 ### 2. Version Control
-Open GitHub Desktop (or use CLI) and commit the changes. Ensure the `docs/` folder is included in your commit.
+Commit the changes including the updated `docs/` folder.
 
 ```bash
 git add .
@@ -36,18 +44,11 @@ git commit -m "Deploy: Update production build"
 git push origin main
 ```
 
-### 3. DNS & Hosting Configuration
-*   **GitHub Repository Settings:**
-    *   Go to **Settings > Pages**.
-    *   **Source:** Deploy from a branch.
-    *   **Branch:** `main` | **Folder:** `/docs`.
-    *   **Custom Domain:** `vexelstudios.xyz`.
-    *   **Enforce HTTPS:** Enable this once the certificate provisions.
-
 ## Local Development
 
 1.  Install dependencies: `npm install`
 2.  Start development server: `npm run dev`
 
 ---
-© Vexel Studios. All Systems Operational.
+© 2026 Vexel Studios. All Systems Operational.
+**Author:** Damon

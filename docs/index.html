@@ -1,106 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vexel Studios | Premium Web Design & Development</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                black: '#050505',
-                surface: '#0A0A0A',
-                card: '#111111',
-                dim: '#A1A1AA',
-                accent: 'var(--brand-accent)'
-              }
-            },
-            borderRadius: {
-              '4xl': '2rem',
-              '5xl': '3rem',
-            },
-            animation: {
-              'scan': 'scan 8s linear infinite',
-              'pulse-slow': 'pulse 10s ease-in-out infinite',
-            },
-            keyframes: {
-              scan: {
-                '0%': { transform: 'translateY(-100%)', opacity: '0' },
-                '50%': { opacity: '0.1' },
-                '100%': { transform: 'translateY(100%)', opacity: '0' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      :root {
-        --brand-accent: #D4FF00;
-      }
-      body {
-        background-color: #050505;
-        color: #FFFFFF;
-        font-family: 'Inter', sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      /* Clean Digital Grid */
-      .bg-grid {
-        background-image: 
-          linear-gradient(to right, rgba(var(--brand-accent-rgb, 212, 255, 0), 0.05) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(var(--brand-accent-rgb, 212, 255, 0), 0.05) 1px, transparent 1px);
-        background-size: 60px 60px;
-      }
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #050505;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #111111;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--brand-accent);
-      }
-      ::selection {
-        background-color: var(--brand-accent);
-        color: #000000;
-      }
-      canvas {
-        display: block;
-      }
-    </style>
 
-<link rel="stylesheet" href="/index.css">
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
-    "vite": "https://esm.sh/vite@^7.3.0",
-    "fs": "https://esm.sh/fs@^0.0.1-security",
-    "path": "https://esm.sh/path@^0.12.7",
-    "url": "https://esm.sh/url@^0.11.4"
-  }
-}
-</script>
-  <script type="module" crossorigin src="/assets/index-CV48QITQ.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vexel Studios | Premium Web Design & Development</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <!-- Local CSS -->
+
+  <script type="module" crossorigin src="/assets/index-pbwTsH1I.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-bskQyD5V.css">
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<body>
+  <div id="root"></div>
+</body>
+
 </html>

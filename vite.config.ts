@@ -16,11 +16,11 @@ export default defineConfig({
       closeBundle() {
         const cnamePath = resolve(__dirname, 'docs', 'CNAME');
         const cnameContent = 'vexelstudios.xyz';
-        
+
         // Ensure docs directory exists (it should after build)
         if (fs.existsSync(resolve(__dirname, 'docs'))) {
-            fs.writeFileSync(cnamePath, cnameContent);
-            console.log(`✓ CNAME file enforced: ${cnameContent}`);
+          fs.writeFileSync(cnamePath, cnameContent);
+          console.log(`✓ CNAME file enforced: ${cnameContent}`);
         }
       }
     }
