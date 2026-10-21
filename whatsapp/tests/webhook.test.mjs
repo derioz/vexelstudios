@@ -1,0 +1,34 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createHmac } from 'node:crypto';
+import { createServer } from 'node:http';
+import { once } from 'node:events';
+import { handleWebhook, verifySignature } from '../src/webhook.mjs';
+import { openStore } from '../src/store.mjs';
+const secret = 'test-app-secret';
+const sign = body => 'sha256=' + createHmac('sha256', secret).update(body).digest('hex');
+test('signature verification rejects altered and malformed signatures', () => {
+  assert.equal(verifySignature(Buffer.from('{}'), sign('{}'), secret), true);
+  assert.equal(verifySignature(Buffer.from('{ }'), sign('{}'), secret), false);
+  assert.equal(verifySignature(Buffer.from('{}'), 'sha256=zz', secret), false);
+  assert.equal(verifySignature(Buffer.from('{}'), undefined, secret), false);
+});
+test('HTTP handshake, payload bounds, durable duplicate handling and manual pause', async t => {
+  const store = openStore(':memory:');
+  const server = createServer((req, res) => handleWebhook(req, res, { config: { appSecret: secret, verifyToken: 'verify', phoneNumberId: '123' }, store }));
+  server.listen(0, '127.0.0.1'); await once(server, 'listening');
+  const base = `http://127.0.0.1:${server.address().port}`;
+  t.after(async () => { server.closeAllConnections(); await new Promise(r => server.close(r)); store.close(); });
+  assert.equal((await fetch(base + '/?hub.mode=subscribe&hub.verify_token=wrong&hub.challenge=hello')).status, 403);
+  assert.equal(await (await fetch(base + '/?hub.mode=subscribe&hub.verify_token=verify&hub.challenge=hello')).text(), 'hello');
+  const post = (body, signature = sign(body)) => fetch(base, { method: 'POST', body, headers: { 'x-hub-signature-256': signature } });
+  assert.equal((await post('{}', 'invalid')).status, 403);
+  assert.equal((await post('{')).status, 400);
+  assert.equal((await post('x'.repeat(262145))).status, 413);
+  const body = JSON.stringify({ object: 'whatsapp_business_account', entry: [{ changes: [{ field: 'messages', value: { metadata: { phone_number_id: '123' }, messages: [{ id: 'one', from: '5511000000000', type: 'text', text: { body: 'Olá' }, timestamp: String(Math.floor(Date.now() / 1000)) }] } }] }] });
+  assert.equal((await post(body)).status, 200); assert.equal((await post(body)).status, 200);
+  assert.equal(store.history('5511000000000').length, 1);
+  const echo = JSON.stringify({ object: 'whatsapp_business_account', entry: [{ changes: [{ field: 'smb_message_echoes', value: { metadata: { phone_number_id: '123' }, message_echoes: [{ id: 'manual', to: '5511000000000', timestamp: String(Math.floor(Date.now() / 1000)) }] } }] }] });
+  assert.equal((await post(echo)).status, 200);
+  assert.equal(store.getConversation('5511000000000').mode, 'human');
+});
